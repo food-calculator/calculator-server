@@ -13,12 +13,12 @@ import org.jetbrains.exposed.sql.transactions.transaction
 import java.io.File
 
 object DatabaseManager {
-    val db = File("./databases/FoodCalculator.db")
+    val db = File("./databases/FoodCalculator")
     val database: Database
 
     init {
         if (!db.parentFile.exists()) db.parentFile.mkdir()
-        if (!db.exists()) db.createNewFile()
+//        if (!db.exists()) db.createNewFile()
         database = Database.connect(
             url = "jdbc:h2:${db.path}",
             driver = "org.h2.Driver",
