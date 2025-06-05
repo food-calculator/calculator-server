@@ -1,25 +1,12 @@
-package de.fridolin1
+package de.fridolin1.modules
 
 import com.mongodb.kotlin.client.coroutine.MongoClient
-import dev.inmo.krontab.builder.*
 import io.github.flaxoos.ktor.server.plugins.taskscheduling.*
 import io.github.flaxoos.ktor.server.plugins.taskscheduling.managers.lock.database.*
 import io.github.flaxoos.ktor.server.plugins.taskscheduling.managers.lock.redis.*
-import io.ktor.http.*
-import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
-import io.ktor.server.http.content.*
-import io.ktor.server.plugins.calllogging.*
-import io.ktor.server.plugins.contentnegotiation.*
-import io.ktor.server.plugins.cors.routing.*
-import io.ktor.server.plugins.openapi.*
-import io.ktor.server.plugins.statuspages.*
-import io.ktor.server.request.*
-import io.ktor.server.response.*
-import io.ktor.server.routing.*
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
-import org.slf4j.event.*
 
 fun Application.configureAdministration() {
     install(TaskScheduling) {
@@ -34,7 +21,7 @@ fun Application.configureAdministration() {
             lockExpirationMs = 60_000
         }
         jdbc("my jdbc manager") { // <-- given a name, a manager can be explicitly selected for a task
-            database = org.jetbrains.exposed.sql.Database.connect(
+            database = Database.connect(
                 url = "jdbc:postgresql://host:port",
                 driver = "org.postgresql.Driver",
                 user = "my_username",

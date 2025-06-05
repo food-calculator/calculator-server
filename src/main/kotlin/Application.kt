@@ -1,5 +1,8 @@
 package de.fridolin1
 
+import de.fridolin1.modules.enableCors
+import de.fridolin1.modules.configureMonitoring
+import de.fridolin1.modules.configureRouting
 import io.ktor.server.application.*
 
 fun main(args: Array<String>) {
@@ -7,11 +10,7 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
-    configureHTTP()
-    configureSecurity()
+    enableCors()
     configureMonitoring()
-    configureSerialization()
-    configureDatabases()
-    configureAdministration()
     configureRouting()
 }
