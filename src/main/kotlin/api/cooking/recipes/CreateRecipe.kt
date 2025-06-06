@@ -13,7 +13,7 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
-fun Route.addRecipe() {
+fun Route.createRecipe() {
     post {
         val recipe = call.receive<RawRecipe>()
         val ingredients = recipe.ingredients
