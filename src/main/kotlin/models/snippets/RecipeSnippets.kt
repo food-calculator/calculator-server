@@ -42,7 +42,7 @@ data class RawRecipe(
     val description: String,
     val minimumAge: Int,
     val timeExpenditure: String,
-    val ingredientIDs: List<Int>
+    val ingredients: List<RecipeIngredientSnippet>
 )
 
 fun Recipe.toRawRecipe(): RawRecipe = RawRecipe(
@@ -51,5 +51,5 @@ fun Recipe.toRawRecipe(): RawRecipe = RawRecipe(
     this.description,
     this.minimumAge,
     this.timeExpenditure,
-    this.recipesIngredients.map { it.ingredient.id.value }
+    this.recipesIngredients.map { it.toSnippet() }
 )

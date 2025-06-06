@@ -9,10 +9,10 @@ import org.jetbrains.exposed.dao.id.IntIdTable
 class Recipe(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<Recipe>(Recipes)
 
-    val name by Recipes.name
-    val description by Recipes.description
-    val timeExpenditure by Recipes.timeExpenditure
-    val minimumAge by Recipes.minimumAge
+    var name by Recipes.name
+    var description by Recipes.description
+    var timeExpenditure by Recipes.timeExpenditure
+    var minimumAge by Recipes.minimumAge
     val recipesIngredients by RecipeIngredient referrersOn RecipeIngredients.recipe
 }
 
