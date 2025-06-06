@@ -1,6 +1,7 @@
 package de.fridolin1.api.cooking.ingredients
 
 import de.fridolin1.models.cooking.Ingredient
+import de.fridolin1.models.cooking.IngredientDTO
 import de.fridolin1.models.cooking.toDTO
 import de.fridolin1.models.responses.Message
 import de.fridolin1.models.responses.MessageStatus
@@ -11,10 +12,11 @@ import io.ktor.server.routing.*
 
 fun Route.addIngredient() {
     post {
-        val name = call.receiveParameters()["name"]!!
+        val ingredient: IngredientDTO = call.receive()
         DatabaseManager.query {
             val ingredient = Ingredient.new {
-                this.name = name
+                this.name = ingredient.name
+                this.unit = ingredient.unit
             }
             call.respond(Message(MessageStatus.SUCCESS, ingredient.toDTO()))
         }

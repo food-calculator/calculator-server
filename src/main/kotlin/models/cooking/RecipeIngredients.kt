@@ -12,14 +12,12 @@ class RecipeIngredient(id: EntityID<Int>) : IntEntity(id) {
     var recipe by Recipe referencedOn RecipeIngredients.recipe
     var ingredient by Ingredient referencedOn RecipeIngredients.ingredient
     var quantity by RecipeIngredients.quantity
-    var unit by RecipeIngredients.unit
 }
 
 object RecipeIngredients : IntIdTable("recipe_ingredients") {
     val recipe = reference("recipe", Recipes)
     val ingredient = reference("ingredient", Ingredients)
     val quantity = double("quantity")
-    val unit = varchar("unit", 64)
 }
 
 @Serializable
@@ -27,7 +25,6 @@ data class RecipeIngredientDTO(
     val id: Int,
     val ingredient: IngredientDTO,
     val quantity: Double,
-    val unit: String
 )
 
 fun RecipeIngredient.toDTO(): RecipeIngredientDTO {
@@ -35,6 +32,5 @@ fun RecipeIngredient.toDTO(): RecipeIngredientDTO {
         this.id.value,
         this.ingredient.toDTO(),
         this.quantity,
-        this.unit
     )
 }
