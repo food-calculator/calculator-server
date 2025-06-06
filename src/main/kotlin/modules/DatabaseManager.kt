@@ -17,6 +17,8 @@ object DatabaseManager {
     val database: Database
 
     init {
+        println("Database initialization...")
+
         if (!db.parentFile.exists()) db.parentFile.mkdir()
 //        if (!db.exists()) db.createNewFile()
         database = Database.connect(
@@ -30,6 +32,8 @@ object DatabaseManager {
         transaction {
             SchemaUtils.create(Recipes, Ingredients, RecipeIngredients)
         }
+
+        println("Database initialization complete!")
     }
 
     suspend fun <T> query(block: suspend Transaction.() -> T): T {

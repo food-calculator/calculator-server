@@ -13,8 +13,8 @@ class Recipe(id: EntityID<Int>) : IntEntity(id) {
     var description by Recipes.description
     var timeExpenditure by Recipes.timeExpenditure
     var minimumAge by Recipes.minimumAge
+    var portionSize by Recipes.portionSize
     val recipesIngredients by RecipeIngredient referrersOn RecipeIngredients.recipe
-    val portionSize by Recipes.portionSize
 }
 
 object Recipes : IntIdTable("Recipes") {

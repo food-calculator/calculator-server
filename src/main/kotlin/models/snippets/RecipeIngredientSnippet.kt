@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RecipeIngredientSnippet(
     val ingredientID: Int,
-    val quantity: Int,
+    val quantity: Double,
     val unit: String
 )
 

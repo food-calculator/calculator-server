@@ -1,5 +1,6 @@
 package de.fridolin1
 
+import de.fridolin1.modules.DatabaseManager
 import de.fridolin1.modules.enableCors
 import de.fridolin1.modules.configureMonitoring
 import de.fridolin1.modules.configureRouting
@@ -13,6 +14,7 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
+    DatabaseManager.database
     enableCors()
     configureMonitoring()
     configureRouting()

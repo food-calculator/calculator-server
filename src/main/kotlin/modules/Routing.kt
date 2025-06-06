@@ -9,16 +9,16 @@ import io.ktor.server.routing.route
 import io.ktor.server.routing.routing
 
 fun Application.configureRouting() {
-    routing {
-        route("/api") { apiRoutes() }
-    }
-
     install(StatusPages) {
         status(HttpStatusCode.NotFound) {
             call.respondText("Not Found", status = HttpStatusCode.NotFound)
         }
         exception<Throwable> { call, cause ->
+            cause.printStackTrace()
             call.respondText(text = "500: $cause", status = HttpStatusCode.InternalServerError)
         }
+    }
+    routing {
+        route("/api") { apiRoutes() }
     }
 }

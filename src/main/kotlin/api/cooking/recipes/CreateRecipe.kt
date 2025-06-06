@@ -30,6 +30,7 @@ fun Route.createRecipe() {
                 this.description = recipe.description
                 this.minimumAge = recipe.minimumAge
                 this.timeExpenditure = recipe.timeExpenditure
+                this.portionSize = recipe.portionSize
             }
             ingredients.forEach { ingredient ->
                 RecipeIngredient.new {

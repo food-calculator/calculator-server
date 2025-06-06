@@ -18,7 +18,7 @@ class RecipeIngredient(id: EntityID<Int>) : IntEntity(id) {
 object RecipeIngredients : IntIdTable("recipe_ingredients") {
     val recipe = reference("recipe", Recipes)
     val ingredient = reference("ingredient", Ingredients)
-    val quantity = integer("quantity")
+    val quantity = double("quantity")
     val unit = varchar("unit", 64)
 }
 
@@ -26,7 +26,7 @@ object RecipeIngredients : IntIdTable("recipe_ingredients") {
 data class RecipeIngredientDTO(
     val id: Int,
     val ingredient: IngredientDTO,
-    val quantity: Int,
+    val quantity: Double,
     val unit: String
 )
 
