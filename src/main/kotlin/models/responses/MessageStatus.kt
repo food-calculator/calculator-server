@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 enum class MessageStatus {
-    SUCCESS, ERROR, DEPENDENCIES_EXISTING
+    SUCCESS, ERROR, DEPENDENCIES_NOT_EXISTING
 }

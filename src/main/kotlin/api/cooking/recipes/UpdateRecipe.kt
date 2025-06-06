@@ -10,6 +10,7 @@ import de.fridolin1.models.responses.MessageStatus
 import de.fridolin1.models.snippets.RawRecipe
 import de.fridolin1.models.snippets.toRawRecipe
 import de.fridolin1.modules.DatabaseManager
+import de.fridolin1.utils.checkImages
 import de.fridolin1.utils.checkIngredients
 import io.ktor.server.request.*
 import io.ktor.server.response.*
@@ -23,11 +24,15 @@ fun Route.updateRecipe() {
 
         val allIngredientsExists = checkIngredients(ingredients)
         if (!allIngredientsExists) {
-            call.respond(Message(MessageStatus.ERROR, "Following ingredients not found: $allIngredientsExists"))
+            call.respond(Message(MessageStatus.DEPENDENCIES_NOT_EXISTING, "Cant fine all Ingredients"))
             return@put
         }
 
-        //TODO check if imaes exist
+        val allImagesExists = checkImages(images)
+        if (!allImagesExists) {
+            call.respond(Message(MessageStatus.DEPENDENCIES_NOT_EXISTING, "Cant find all Images"))
+            return@put
+        }
 
         DatabaseManager.query {
             if (Recipe.all().none { it.id.value == recipeData.id }) {

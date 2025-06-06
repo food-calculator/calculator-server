@@ -15,7 +15,7 @@ fun Route.removeIngredient() {
         DatabaseManager.query {
             val recipes = RecipeIngredient.all().filter { it.ingredient.id.value == id }.map { it.recipe }
             if (recipes.isNotEmpty()) {
-                call.respond(Message(MessageStatus.DEPENDENCIES_EXISTING, recipes))
+                call.respond(Message(MessageStatus.DEPENDENCIES_NOT_EXISTING, recipes))
                 return@query
             }
 
