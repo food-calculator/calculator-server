@@ -14,6 +14,7 @@ class Recipe(id: EntityID<Int>) : IntEntity(id) {
     var timeExpenditure by Recipes.timeExpenditure
     var minimumAge by Recipes.minimumAge
     val recipesIngredients by RecipeIngredient referrersOn RecipeIngredients.recipe
+    val portionSize by Recipes.portionSize
 }
 
 object Recipes : IntIdTable("Recipes") {
@@ -21,6 +22,7 @@ object Recipes : IntIdTable("Recipes") {
     val description = text("description")
     val timeExpenditure = varchar("timeExpenditure", 64)
     val minimumAge = integer("minimunAge")
+    val portionSize = integer("portionSize")
 }
 
 @Serializable
@@ -30,6 +32,7 @@ data class RecipeDTO(
     val description: String,
     val timeExpenditure: String,
     val minimumAge: Int,
+    val portionSize: Int,
     val recipesIngredients: List<RecipeIngredientDTO>
 )
 
@@ -40,6 +43,7 @@ fun Recipe.toDTO(): RecipeDTO {
         this.description,
         this.timeExpenditure,
         this.minimumAge,
+        this.portionSize,
         this.recipesIngredients.map { it.toDTO() }
     )
 }
