@@ -4,6 +4,7 @@ import de.fridolin1.models.cooking.Ingredients
 import de.fridolin1.models.cooking.RecipeIngredients
 import de.fridolin1.models.cooking.Recipes
 import de.fridolin1.models.images.Images
+import de.fridolin1.models.images.RecipeImages
 import kotlinx.coroutines.Dispatchers
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.DatabaseConfig
@@ -32,7 +33,7 @@ object DatabaseManager {
 
         transaction {
             SchemaUtils.create(Recipes, Ingredients, RecipeIngredients)
-            SchemaUtils.create(Images)
+            SchemaUtils.create(Images, RecipeImages)
         }
 
         println("Database initialization complete!")

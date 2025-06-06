@@ -3,6 +3,8 @@ package de.fridolin1.api.cooking.recipes
 import de.fridolin1.models.cooking.Ingredient
 import de.fridolin1.models.cooking.Recipe
 import de.fridolin1.models.cooking.RecipeIngredient
+import de.fridolin1.models.images.Image
+import de.fridolin1.models.images.RecipeImage
 import de.fridolin1.models.responses.Message
 import de.fridolin1.models.responses.MessageStatus
 import de.fridolin1.models.snippets.RawRecipe
@@ -17,12 +19,15 @@ fun Route.createRecipe() {
     post {
         val recipe = call.receive<RawRecipe>()
         val ingredients = recipe.ingredients
+        val images = recipe.images
 
         val allIngredientsExists = checkIngredients(ingredients)
         if (!allIngredientsExists) {
             call.respond(Message(MessageStatus.ERROR, "Following ingredients not found: $allIngredientsExists"))
             return@post
         }
+
+        //TODO Check if images exist
 
         DatabaseManager.query {
             val recipe = Recipe.new {
@@ -32,12 +37,18 @@ fun Route.createRecipe() {
                 this.timeExpenditure = recipe.timeExpenditure
                 this.portionSize = recipe.portionSize
             }
-            ingredients.forEach { ingredient ->
+            ingredients.forEach { it ->
                 RecipeIngredient.new {
                     this.recipe = recipe
-                    this.quantity = ingredient.quantity
-                    this.unit = ingredient.unit
-                    this.ingredient = Ingredient[ingredient.ingredientID]
+                    this.quantity = it.quantity
+                    this.unit = it.unit
+                    this.ingredient = Ingredient[it.ingredientID]
+                }
+            }
+            images.forEach {
+                RecipeImage.new {
+                    this.recipe = recipe
+                    this.image = Image[it]
                 }
             }
             call.respond(Message(MessageStatus.SUCCESS, recipe.toRawRecipe()))

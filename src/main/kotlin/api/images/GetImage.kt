@@ -12,7 +12,6 @@ fun Route.getImage() {
         val imageID = call.queryParameters["id"]?.toInt()!!
         DatabaseManager.query {
             val file = Image[imageID]
-            println(file.contentType)
             call.response.header(HttpHeaders.ContentType, file.contentType)
             call.respondFile(File("./images/${file.fileID}"))
         }

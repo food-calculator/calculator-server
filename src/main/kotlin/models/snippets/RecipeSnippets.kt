@@ -1,6 +1,7 @@
 package de.fridolin1.models.snippets
 
 import de.fridolin1.models.cooking.Recipe
+import de.fridolin1.modules.DatabaseManager
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -43,7 +44,8 @@ data class RawRecipe(
     val minimumAge: Int,
     val timeExpenditure: String,
     val portionSize: Int,
-    val ingredients: List<RecipeIngredientSnippet>
+    val ingredients: List<RecipeIngredientSnippet>,
+    val images: List<Int> = listOf(),
 )
 
 fun Recipe.toRawRecipe(): RawRecipe = RawRecipe(
@@ -53,5 +55,6 @@ fun Recipe.toRawRecipe(): RawRecipe = RawRecipe(
     this.minimumAge,
     this.timeExpenditure,
     this.portionSize,
-    this.recipesIngredients.map { it.toSnippet() }
+    this.recipesIngredients.map { it.toSnippet() },
+    this.images.map { recipeImage -> recipeImage.image.id.value }
 )

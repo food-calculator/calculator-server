@@ -1,5 +1,7 @@
 package de.fridolin1.models.cooking
 
+import de.fridolin1.models.images.RecipeImage
+import de.fridolin1.models.images.RecipeImages
 import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
@@ -15,6 +17,7 @@ class Recipe(id: EntityID<Int>) : IntEntity(id) {
     var minimumAge by Recipes.minimumAge
     var portionSize by Recipes.portionSize
     val recipesIngredients by RecipeIngredient referrersOn RecipeIngredients.recipe
+    val images by RecipeImage referrersOn RecipeImages.recipe
 }
 
 object Recipes : IntIdTable("Recipes") {
