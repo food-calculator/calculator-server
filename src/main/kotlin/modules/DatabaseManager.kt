@@ -20,6 +20,7 @@ object DatabaseManager {
 
     init {
         println("Database initialization...")
+        println("Database file path: ${db.absolutePath}")
 
         if (!db.parentFile.exists()) db.parentFile.mkdir()
 //        if (!db.exists()) db.createNewFile()
