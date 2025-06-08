@@ -46,7 +46,6 @@ fun Route.createRecipe() {
                 RecipeIngredient.new {
                     this.recipe = recipe
                     this.quantity = it.quantity
-                    this.unit = it.unit
                     this.ingredient = Ingredient[it.ingredientID]
                 }
             }

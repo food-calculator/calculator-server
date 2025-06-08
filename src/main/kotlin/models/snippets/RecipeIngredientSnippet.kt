@@ -6,14 +6,12 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RecipeIngredientSnippet(
     val ingredientID: Int,
-    val quantity: Double,
-    val unit: String
+    val quantity: Double
 )
 
 fun RecipeIngredient.toSnippet(): RecipeIngredientSnippet {
     return RecipeIngredientSnippet(
         this.ingredient.id.value,
-        this.quantity,
-        this.unit
+        this.quantity
     )
 }
