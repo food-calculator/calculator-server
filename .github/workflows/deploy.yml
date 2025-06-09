@@ -55,4 +55,4 @@ jobs:
 
       - name: Trigger Watchtower
         run: |
-          curl -H "Authorization: Bearer ${{ secrets.WATCHTOWER_TOKEN }}" ${{ secrets.WATCHTOWER_ADDRESS }}
+          curl -m 7 -H "Authorization: Bearer ${{ secrets.WATCHTOWER_TOKEN }}" ${{ secrets.WATCHTOWER_ADDRESS }}
