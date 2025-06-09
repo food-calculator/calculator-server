@@ -31,6 +31,6 @@ fun Route.apiRoutes() {
     }
 
     get {
-        call.respond(Message(MessageStatus.SUCCESS, "Hello from the API"))
+        call.respond(Message(MessageStatus.SUCCESS, "Hello World from the API Server"))
     }
 }
