@@ -31,6 +31,6 @@ fun Route.apiRoutes() {
     }
 
     get {
-        call.respond(Message(MessageStatus.SUCCESS, "Hello World from the API Server"))
+        call.respond(Message(MessageStatus.SUCCESS, "Hello World from the API Server for the Food Calculator"))
     }
 }
