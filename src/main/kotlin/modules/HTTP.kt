@@ -10,6 +10,9 @@ fun Application.enableCors() {
         allowMethod(HttpMethod.Get)
         allowMethod(HttpMethod.Put)
         allowMethod(HttpMethod.Delete)
+        allowMethod(HttpMethod.Options)
+        allowHeader(HttpHeaders.Authorization)
+        allowCredentials = true
         anyHost() // @TODO: Don't do this in production if possible. Try to limit it.
     }
 //    routing {
