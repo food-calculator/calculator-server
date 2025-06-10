@@ -22,6 +22,11 @@ fun Route.createRecipe() {
         val ingredients = recipe.ingredients
         val images = recipe.images
 
+        if (recipe.name.isEmpty() || recipe.ingredients.isEmpty()) {
+            call.respond(Message(MessageStatus.MISSING_INFORMATION, "Recipe name and ingredients cannot be empty."))
+            return@post
+        }
+
         val allIngredientsExists = checkIngredients(ingredients)
         if (!allIngredientsExists) {
             call.respond(Message(MessageStatus.ERROR, "Cant ind all Ingredients"))

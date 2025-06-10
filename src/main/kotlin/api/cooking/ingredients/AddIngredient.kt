@@ -13,6 +13,10 @@ import io.ktor.server.routing.*
 fun Route.addIngredient() {
     post {
         val ingredient: IngredientDTO = call.receive()
+        if (ingredient.name.isEmpty() || ingredient.unit.isEmpty()) {
+            call.respond(Message(MessageStatus.MISSING_INFORMATION, "Ingredient name or unit cannot be empty."))
+            return@post
+        }
         DatabaseManager.query {
             val ingredient = Ingredient.new {
                 this.name = ingredient.name

@@ -22,6 +22,12 @@ fun Route.updateRecipe() {
         val ingredients = recipeData.ingredients
         val images = recipeData.images
 
+        if (recipeData.name.isEmpty() || recipeData.ingredients.isEmpty()) {
+            call.respond(Message(MessageStatus.MISSING_INFORMATION, "Recipe name and ingredients cannot be empty."))
+            return@put
+        }
+
+
         val allIngredientsExists = checkIngredients(ingredients)
         if (!allIngredientsExists) {
             call.respond(Message(MessageStatus.DEPENDENCIES_NOT_EXISTING, "Cant fine all Ingredients"))
