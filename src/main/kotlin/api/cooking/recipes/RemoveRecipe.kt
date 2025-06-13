@@ -12,7 +12,10 @@ fun Route.removeRecipe() {
     delete {
         val id = call.receiveParameters()["id"]?.toInt()!!
         DatabaseManager.query {
-            Recipe[id].delete()
+            val recipe = Recipe[id]
+            recipe.recipesIngredients.forEach { it.delete() }
+            recipe.images.forEach { it.delete() }
+            recipe.delete()
         }
         call.respond(Message(MessageStatus.SUCCESS, "Successfully delete Entry with id: $id"))
     }
