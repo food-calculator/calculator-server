@@ -1,7 +1,6 @@
 package de.fridolin1.models.snippets
 
 import de.fridolin1.models.cooking.Recipe
-import de.fridolin1.modules.DatabaseManager
 import kotlinx.serialization.Serializable
 
 @Serializable
