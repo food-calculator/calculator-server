@@ -1,0 +1,41 @@
+package de.fridolin1.models.cateringPlans
+
+import de.fridolin1.models.cooking.Recipe
+import de.fridolin1.models.cooking.Recipes
+import kotlinx.datetime.LocalDate
+import org.jetbrains.exposed.dao.IntEntity
+import org.jetbrains.exposed.dao.IntEntityClass
+import org.jetbrains.exposed.dao.id.EntityID
+import org.jetbrains.exposed.dao.id.IntIdTable
+import org.jetbrains.exposed.sql.kotlin.datetime.date
+
+class AssignedRecipe(id: EntityID<Int>) : IntEntity(id) {
+    companion object: IntEntityClass<AssignedRecipe>(AssignedRecipes)
+
+    val date by AssignedRecipes.date
+    val recipe by Recipe referencedOn AssignedRecipes.recipe
+    val personCount by AssignedRecipes.personCount
+}
+
+object AssignedRecipes : IntIdTable() {
+    val mealSlot = reference("mealSlot", MealSlots)
+    val date = date("date")
+    val recipe = reference("recipe", Recipes)
+    val personCount = integer("personCount")
+}
+
+data class AssignedRecipesDTO(
+    val id: Int,
+    val data: LocalDate,
+    val recipe: Int,
+    val personCount: Int,
+)
+
+fun AssignedRecipe.toDTO(): AssignedRecipesDTO {
+    return AssignedRecipesDTO(
+        this.id.value,
+        this.date,
+        this.recipe.id.value,
+        this.personCount
+    )
+}
