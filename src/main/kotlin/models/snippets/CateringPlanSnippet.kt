@@ -8,6 +8,7 @@ data class CateringPlanHead(
     val name: String,
     val dateStart: LocalDate,
     val dateEnd: LocalDate,
+    val defaultPersonCount: Int,
 )
 
 fun CateringPlan.toPlanHead(): CateringPlanHead {
@@ -15,6 +16,7 @@ fun CateringPlan.toPlanHead(): CateringPlanHead {
         this.id.value,
         this.name,
         this.dateStart,
-        this.dateEnd
+        this.dateEnd,
+        this.defaultPersonCount,
     )
 }
