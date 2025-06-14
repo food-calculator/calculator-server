@@ -11,8 +11,9 @@ class MealSlot(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<MealSlot>(MealSlots)
 
     var name by MealSlots.name
-    val time by MealSlots.time
-    val defaultPersonCount by MealSlots.defaultPersonCount
+    var cateringPlan by CateringPlan referencedOn MealSlots.cateringPlan
+    var time by MealSlots.time
+    var defaultPersonCount by MealSlots.defaultPersonCount
     val assignedRecipes by AssignedRecipe referrersOn AssignedRecipes.mealSlot
 }
 

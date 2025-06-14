@@ -11,12 +11,20 @@ import de.fridolin1.api.planning.cateringPlans.deleteCateringPlan
 import de.fridolin1.api.planning.cateringPlans.listCateringPlans
 import de.fridolin1.api.planning.cateringPlans.readCateringPlan
 import de.fridolin1.api.planning.cateringPlans.updateCateringPlanHead
+import de.fridolin1.api.planning.mealSlots.createMealSlot
+import de.fridolin1.api.planning.mealSlots.deleteMealSlot
+import de.fridolin1.api.planning.mealSlots.updateMealSlot
 import de.fridolin1.models.responses.Message
 import de.fridolin1.models.responses.MessageStatus
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
 fun Route.apiRoutes() {
+    route("mealSlots") {
+        createMealSlot()
+        updateMealSlot()
+        deleteMealSlot()
+    }
     route("cateringPlans") {
         createCateringPlan()
         readCateringPlan()
