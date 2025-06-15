@@ -18,7 +18,7 @@ fun Route.imageUpload() {
     post {
         val fileID = System.nanoTime()
         val contentType = call.request.headers[HttpHeaders.ContentType]!!
-        val file = File("./images/${fileID}")
+        val file = File("./data/images/${fileID}")
         if (!file.parentFile.exists()) file.parentFile.mkdir()
         call.receiveChannel().copyAndClose(file.writeChannel())
         if (ImageIO.read(file) == null) {
