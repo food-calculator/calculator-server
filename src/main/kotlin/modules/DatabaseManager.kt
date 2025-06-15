@@ -1,5 +1,8 @@
 package de.fridolin1.modules
 
+import de.fridolin1.models.cateringPlans.AssignedRecipes
+import de.fridolin1.models.cateringPlans.CateringPlans
+import de.fridolin1.models.cateringPlans.MealSlots
 import de.fridolin1.models.cooking.Ingredients
 import de.fridolin1.models.cooking.RecipeIngredients
 import de.fridolin1.models.cooking.Recipes
@@ -38,6 +41,7 @@ object DatabaseManager {
         transaction {
             SchemaUtils.create(Recipes, Ingredients, RecipeIngredients)
             SchemaUtils.create(Images, RecipeImages)
+            SchemaUtils.create(CateringPlans, AssignedRecipes, MealSlots)
         }
 
         println("Database initialization complete!")

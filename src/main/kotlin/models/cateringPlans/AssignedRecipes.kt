@@ -13,9 +13,10 @@ import org.jetbrains.exposed.sql.kotlin.datetime.date
 class AssignedRecipe(id: EntityID<Int>) : IntEntity(id) {
     companion object: IntEntityClass<AssignedRecipe>(AssignedRecipes)
 
-    val date by AssignedRecipes.date
-    val recipe by Recipe referencedOn AssignedRecipes.recipe
-    val personCount by AssignedRecipes.personCount
+    var date by AssignedRecipes.date
+    var recipe by Recipe referencedOn AssignedRecipes.recipe
+    var personCount by AssignedRecipes.personCount
+    var mealSlot  by MealSlot referencedOn AssignedRecipes.mealSlot
 }
 
 object AssignedRecipes : IntIdTable() {

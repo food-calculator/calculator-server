@@ -6,11 +6,10 @@ import de.fridolin1.api.cooking.ingredients.removeIngredient
 import de.fridolin1.api.cooking.recipes.*
 import de.fridolin1.api.images.getImage
 import de.fridolin1.api.images.imageUpload
-import de.fridolin1.api.planning.cateringPlans.createCateringPlan
-import de.fridolin1.api.planning.cateringPlans.deleteCateringPlan
-import de.fridolin1.api.planning.cateringPlans.listCateringPlans
-import de.fridolin1.api.planning.cateringPlans.readCateringPlan
-import de.fridolin1.api.planning.cateringPlans.updateCateringPlanHead
+import de.fridolin1.api.planning.assignedRecipes.createAssignedRecipes
+import de.fridolin1.api.planning.assignedRecipes.deleteAssignedRecipes
+import de.fridolin1.api.planning.assignedRecipes.updateAssignedRecipes
+import de.fridolin1.api.planning.cateringPlans.*
 import de.fridolin1.api.planning.mealSlots.createMealSlot
 import de.fridolin1.api.planning.mealSlots.deleteMealSlot
 import de.fridolin1.api.planning.mealSlots.updateMealSlot
@@ -20,6 +19,11 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
 fun Route.apiRoutes() {
+    route("assignedRecipe") {
+        createAssignedRecipes()
+        updateAssignedRecipes()
+        deleteAssignedRecipes()
+    }
     route("mealSlots") {
         createMealSlot()
         updateMealSlot()
@@ -51,6 +55,11 @@ fun Route.apiRoutes() {
     }
 
     get {
-        call.respond(Message(MessageStatus.SUCCESS, "Hello API! This is the Server for the food calculator! Bon appetit!"))
+        call.respond(
+            Message(
+                MessageStatus.SUCCESS,
+                "Hello API! This is the Server for the food calculator! Bon appetit!"
+            )
+        )
     }
 }
