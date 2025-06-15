@@ -3,6 +3,7 @@ package de.fridolin1.models.cateringPlans
 import de.fridolin1.models.cooking.Recipe
 import de.fridolin1.models.cooking.Recipes
 import kotlinx.datetime.LocalDate
+import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
@@ -24,6 +25,7 @@ object AssignedRecipes : IntIdTable() {
     val personCount = integer("personCount")
 }
 
+@Serializable
 data class AssignedRecipesDTO(
     val id: Int,
     val data: LocalDate,

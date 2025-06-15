@@ -1,6 +1,7 @@
 package de.fridolin1.models.cateringPlans
 
 import kotlinx.datetime.LocalTime
+import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
@@ -24,6 +25,7 @@ object MealSlots : IntIdTable() {
     val defaultPersonCount = integer("defaultPersonCount")
 }
 
+@Serializable
 data class MealSlotsDTO(
     val id: Int,
     val name: String,

@@ -2,7 +2,9 @@ package de.fridolin1.models.snippets
 
 import de.fridolin1.models.cateringPlans.CateringPlan
 import kotlinx.datetime.LocalDate
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class CateringPlanHead(
     val id: Int,
     val name: String,
