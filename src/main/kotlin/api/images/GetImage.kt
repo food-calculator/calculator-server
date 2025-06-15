@@ -13,7 +13,7 @@ fun Route.getImage() {
         DatabaseManager.query {
             val file = Image[imageID]
             call.response.header(HttpHeaders.ContentType, file.contentType)
-            call.respondFile(File("./images/${file.fileID}"))
+            call.respondFile(File("./data/images/${file.fileID}"))
         }
     }
 }

@@ -12,10 +12,12 @@ import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.Transaction
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.sql.transactions.transactionManager
 import java.io.File
+import java.sql.Connection
 
 object DatabaseManager {
-    val db = File("./databases/FoodCalculator")
+    val db = File("./data/FoodCalculator.db")
     val database: Database
 
     init {
@@ -25,12 +27,13 @@ object DatabaseManager {
         if (!db.parentFile.exists()) db.parentFile.mkdir()
 //        if (!db.exists()) db.createNewFile()
         database = Database.connect(
-            url = "jdbc:h2:${db.path}",
-            driver = "org.h2.Driver",
+            url = "jdbc:sqlite:${db.path}",
+            driver = "org.sqlite.JDBC",
             databaseConfig = DatabaseConfig {
                 keepLoadedReferencesOutOfTransaction = true
-            }
+            },
         )
+        database.transactionManager.defaultIsolationLevel = Connection.TRANSACTION_SERIALIZABLE
 
         transaction {
             SchemaUtils.create(Recipes, Ingredients, RecipeIngredients)
