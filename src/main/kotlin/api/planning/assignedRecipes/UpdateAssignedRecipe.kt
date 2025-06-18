@@ -17,7 +17,7 @@ fun Route.updateAssignedRecipes() {
             val assignedRecipe = AssignedRecipe[assignedRecipeData.id]
             assignedRecipe.recipe = Recipe[assignedRecipeData.recipe]
             assignedRecipe.personCount = assignedRecipeData.personCount
-            assignedRecipe.date = assignedRecipeData.data
+            assignedRecipe.date = assignedRecipeData.date
             call.respond(Message(MessageStatus.SUCCESS, "Updated assignedRecipe!"))
         }
     }

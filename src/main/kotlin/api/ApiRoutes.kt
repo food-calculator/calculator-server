@@ -8,6 +8,8 @@ import de.fridolin1.api.images.getImage
 import de.fridolin1.api.images.imageUpload
 import de.fridolin1.api.planning.assignedRecipes.createAssignedRecipes
 import de.fridolin1.api.planning.assignedRecipes.deleteAssignedRecipes
+import de.fridolin1.api.planning.assignedRecipes.list.createAssignedRecipeList
+import de.fridolin1.api.planning.assignedRecipes.list.deleteAssignedRecipeList
 import de.fridolin1.api.planning.assignedRecipes.updateAssignedRecipes
 import de.fridolin1.api.planning.cateringPlans.*
 import de.fridolin1.api.planning.mealSlots.createMealSlot
@@ -23,6 +25,10 @@ fun Route.apiRoutes() {
         createAssignedRecipes()
         updateAssignedRecipes()
         deleteAssignedRecipes()
+        route("list") {
+            createAssignedRecipeList()
+            deleteAssignedRecipeList()
+        }
     }
     route("mealSlots") {
         createMealSlot()

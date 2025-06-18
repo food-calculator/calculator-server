@@ -29,7 +29,7 @@ object AssignedRecipes : IntIdTable() {
 @Serializable
 data class AssignedRecipesDTO(
     val id: Int,
-    val data: LocalDate,
+    val date: LocalDate,
     val recipe: Int,
     val personCount: Int,
 )

@@ -18,7 +18,7 @@ fun Route.createAssignedRecipes() {
             val assignedRecipe = AssignedRecipe.new {
                 this.recipe = Recipe[assignedRecipeData.recipe]
                 this.mealSlot = MealSlot[assignedRecipeData.mealSlot]
-                this.date = assignedRecipeData.data
+                this.date = assignedRecipeData.date
                 this.personCount = assignedRecipeData.personCount
             }
             call.respond(Message(MessageStatus.SUCCESS, assignedRecipe))

@@ -14,9 +14,8 @@ import io.ktor.server.routing.*
 fun Route.createMealSlot() {
     post {
         val mealSlotHead = call.receive<MealSlotHead>()
-        val slot = call.receive<MealSlotHead>()
         DatabaseManager.query {
-            val cateringPlan = CateringPlan[slot.cateringPlan]
+            val cateringPlan = CateringPlan[mealSlotHead.cateringPlan]
             val mealSlot = MealSlot.new {
                 this.cateringPlan = cateringPlan
                 this.name = mealSlotHead.name

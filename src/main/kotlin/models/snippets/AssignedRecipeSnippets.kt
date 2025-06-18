@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class AssignedRecipeCreateObject(
     val mealSlot: Int,
-    val data: LocalDate,
+    val date: LocalDate,
     val recipe: Int,
     val personCount: Int,
 )
