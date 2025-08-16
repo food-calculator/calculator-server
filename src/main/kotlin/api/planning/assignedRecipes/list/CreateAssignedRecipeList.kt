@@ -7,7 +7,7 @@ import de.fridolin1.models.cateringPlans.toDTO
 import de.fridolin1.models.cooking.Recipe
 import de.fridolin1.models.responses.Message
 import de.fridolin1.models.responses.MessageStatus
-import de.fridolin1.models.snippets.AssignedRecipeCreateObject
+import de.fridolin1.models.snippets.planning.AssignedRecipeCObject
 import de.fridolin1.modules.DatabaseManager
 import io.ktor.server.request.*
 import io.ktor.server.response.*
@@ -15,7 +15,7 @@ import io.ktor.server.routing.*
 
 fun Route.createAssignedRecipeList() {
     post {
-        val assignedRecipes = call.receive<List<AssignedRecipeCreateObject>>()
+        val assignedRecipes = call.receive<List<AssignedRecipeCObject>>()
         DatabaseManager.query {
             val recipeList = mutableListOf<AssignedRecipesDTO>()
             assignedRecipes.forEach {

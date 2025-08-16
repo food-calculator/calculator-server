@@ -3,7 +3,7 @@ package de.fridolin1.api.planning.cateringPlans
 import de.fridolin1.models.cateringPlans.CateringPlan
 import de.fridolin1.models.responses.Message
 import de.fridolin1.models.responses.MessageStatus
-import de.fridolin1.models.snippets.CateringPlanHead
+import de.fridolin1.models.snippets.planning.CateringPlanHead
 import de.fridolin1.modules.DatabaseManager
 import io.ktor.server.request.*
 import io.ktor.server.response.*

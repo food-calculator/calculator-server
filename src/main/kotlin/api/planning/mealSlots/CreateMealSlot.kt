@@ -4,8 +4,8 @@ import de.fridolin1.models.cateringPlans.CateringPlan
 import de.fridolin1.models.cateringPlans.MealSlot
 import de.fridolin1.models.responses.Message
 import de.fridolin1.models.responses.MessageStatus
-import de.fridolin1.models.snippets.MealSlotHead
-import de.fridolin1.models.snippets.toMealSlotHead
+import de.fridolin1.models.snippets.planning.MealSlotHead
+import de.fridolin1.models.snippets.planning.toMealSlotHead
 import de.fridolin1.modules.DatabaseManager
 import io.ktor.server.request.*
 import io.ktor.server.response.*

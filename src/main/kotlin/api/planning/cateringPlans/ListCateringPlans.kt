@@ -1,7 +1,7 @@
 package de.fridolin1.api.planning.cateringPlans
 
 import de.fridolin1.models.cateringPlans.CateringPlan
-import de.fridolin1.models.snippets.toPlanHead
+import de.fridolin1.models.snippets.planning.toPlanHead
 import de.fridolin1.modules.DatabaseManager
 import io.ktor.server.response.respond
 import io.ktor.server.routing.*

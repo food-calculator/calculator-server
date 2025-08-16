@@ -5,7 +5,7 @@ import de.fridolin1.models.cateringPlans.MealSlot
 import de.fridolin1.models.cooking.Recipe
 import de.fridolin1.models.responses.Message
 import de.fridolin1.models.responses.MessageStatus
-import de.fridolin1.models.snippets.AssignedRecipeCreateObject
+import de.fridolin1.models.snippets.planning.AssignedRecipeCObject
 import de.fridolin1.modules.DatabaseManager
 import io.ktor.server.request.*
 import io.ktor.server.response.*
@@ -13,7 +13,7 @@ import io.ktor.server.routing.*
 
 fun Route.createAssignedRecipes() {
     post {
-        val assignedRecipeData = call.receive<AssignedRecipeCreateObject>()
+        val assignedRecipeData = call.receive<AssignedRecipeCObject>()
         DatabaseManager.query {
             val assignedRecipe = AssignedRecipe.new {
                 this.recipe = Recipe[assignedRecipeData.recipe]
